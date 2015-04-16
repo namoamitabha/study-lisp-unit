@@ -1,60 +1,103 @@
 # lisp-unit-study
 study lisp-unit which will be used in my future project
 
+## my-max test
 
-## test in slime
-`load lisp-unit
-(load "lisp-unit")
-(in-package :lisp-unit)`
+[lisp-unit-study]$ clisp run-my-max-tests.lisp 
+ | Failed Form: (MY-SQRT (* I I))
+ | Expected 4 but saw 8
+ | I => 4
+ |
+ | Failed Form: (MY-SQRT (* I I))
+ | Expected 3 but saw 9/2
+ | I => 3
+ |
+ | Failed Form: (MY-SQRT (* I I))
+ | Expected 1 but saw 1/2
+ | I => 1
+ |
+TEST-LOOP-ASSERTION: 2 assertions passed, 3 failed.
 
-define test target
-`(defun my-max (a b)
-  (if (> a b) a b))`
+ | Failed Form: NIL
+ | Expected T but saw NIL
+ |
+ASSERT-TRUE-TEST: 0 assertions passed, 1 failed.
 
-define test case
-`(define-test test-my-max
-  (assert-equal 5 (my-max 2 5)))`
+ | Failed Form: (MY-MAX 3 2)
+ | Expected 2 but saw 3
+ |
+FAILURE-TEST-MY-MAX: 0 assertions passed, 1 failed.
 
-run test:
-`(run-tests '(test-my-max))`
-or 
-`(run-tests)`
+ | Failed Form: (MY-MAX 3 5)
+ | Expected 3 but saw 5
+ |
+NEGATIVE-TEST-MY-MAX: 0 assertions passed, 1 failed.
 
-here is the log:
+TEST-MY-MAX: 2 assertions passed, 0 failed.
 
-[3]> (load "lisp-unit")
-;; Loading file git-root/lisp-unit-study/lisp-unit.lisp ...
-;; Loaded file git-root/lisp-unit-study/lisp-unit.lisp
-T
-[4]> (in-package :lisp-unit)
-'#<PACKAGE LISP-UNIT>
-LISP-UNIT[5]> (defun my-max (a b)
-  (if (> a b) a b))
-
-MY-MAX
-LISP-UNIT[6]> (define-test test-my-max
-  (assert-equal 5 (my-max 2 5)))
-TEST-MY-MAX
-LISP-UNIT[7]> (run-tests '(test-my-max))
 Unit Test Summary
- | 1 assertions total
- | 1 passed
+ | 10 assertions total
+ | 4 passed
+ | 6 failed
+ | 0 execution errors
+ | 0 missing tests
+
+*** - NO-APPLICABLE-METHOD: When calling
+      #<STANDARD-GENERIC-FUNCTION PRINT-ERRORS> with arguments (NIL), no
+      method is applicable.
+[ lisp-unit-study]$ 
+
+
+
+## using unittest in package
+
+[ lisp-unit-study]$ clisp run-date-tests.lisp 
+
+2 
+4 
+ | Failed Form: (DATE:STRING->DATE 4)
+ | Expected 3 but saw 4
+ |
+TEST-STRING->DATE: 1 assertions passed, 1 failed.
+
+
+2 
+5 
+TEST-DATE->STRING: 2 assertions passed, 0 failed.
+
+Unit Test Summary
+ | 4 assertions total
+ | 3 passed
+ | 1 failed
+ | 0 execution errors
+ | 0 missing tests
+
+[ lisp-unit-study]$ 
+
+## using tags to organize tests
+[ lisp-unit-study]$ clisp run-tag-tests.lisp 
+SUBTRACT-INTEGER: 3 assertions passed, 0 failed.
+
+ADD-INTEGER: 3 assertions passed, 0 failed.
+
+Unit Test Summary
+ | 6 assertions total
+ | 6 passed
  | 0 failed
  | 0 execution errors
  | 0 missing tests
 
-'#<TEST-RESULTS-DB Total(1) Passed(1) Failed(0) Errors(0)>
-LISP-UNIT[8]> (run-tests)
+SUBTRACT-COMPLEX: 3 assertions passed, 0 failed.
+
+SUBTRACT-FLOAT: 3 assertions passed, 0 failed.
+
+SUBTRACT-INTEGER: 3 assertions passed, 0 failed.
+
 Unit Test Summary
- | 1 assertions total
- | 1 passed
+ | 9 assertions total
+ | 9 passed
  | 0 failed
  | 0 execution errors
  | 0 missing tests
 
-'#<TEST-RESULTS-DB Total(1) Passed(1) Failed(0) Errors(0)>
-
-LISP-UNIT[9]> 
-
-
-## test in package
+[ lisp-unit-study]$ 
