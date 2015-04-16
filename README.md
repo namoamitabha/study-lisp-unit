@@ -21,6 +21,7 @@ or
 (run-tests)
 
 here is the log:
+`
 [3]> (load "lisp-unit")
 ;; Loading file git-root/lisp-unit-study/lisp-unit.lisp ...
 ;; Loaded file git-root/lisp-unit-study/lisp-unit.lisp
@@ -55,6 +56,7 @@ Unit Test Summary
 #<TEST-RESULTS-DB Total(1) Passed(1) Failed(0) Errors(0)>
 
 LISP-UNIT[9]> 
+`
 
 * test in package
 
